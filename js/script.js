@@ -206,7 +206,6 @@ function generateRandomGame() {
   checkGameComplete(); // Verifica se o jogo gerado é completo e habilita o botão de salvar
 }
 
-
 function saveGame() {
   const game = state.currentNumbers.map(nums => nums.slice());
   state.savedGames.push(game);
@@ -229,12 +228,28 @@ function exportSavedGames() {
     return;
   }
 
-  let csvContent = "data:text/csv;charset=utf-8,";
-  csvContent += "Coluna 1,Coluna 2,Coluna 3,Coluna 4,Coluna 5,Coluna 6,Coluna 7\n";
+  let csvContent = "data:text/csv;charset=utf-8,\n";
+
   state.savedGames.forEach(game => {
-    csvContent += game.map(col => col.join(",")).join(",") + "\n";
+    // Garante que cada elemento seja um número simples
+    const flattenedGame = game.flat(Infinity).map(value => {
+      if (typeof value !== 'number') {
+        console.warn('Elemento não numérico encontrado:', value);
+        return value.toString(); // Converte para string caso necessário
+      }
+      return value;
+    });
+
+    // Adiciona cada elemento como uma nova coluna no CSV
+    flattenedGame.forEach(element => {
+      csvContent += element + ",";
+    });
+
+    // Adiciona uma nova linha após cada jogo
+    csvContent += "\n";
   });
 
+  // Cria um link para download do CSV
   const encodedUri = encodeURI(csvContent);
   const link = document.createElement("a");
   link.setAttribute("href", encodedUri);
@@ -263,17 +278,11 @@ function loadSavedGames() {
 
     state.savedGames.forEach(game => {
       const li = document.createElement('li');
-      li.textContent = game.map(col => col.join(' ')).join(' | ');
+      li.textContent = game.map(col => col.join('/')).join(' | ');
       ul.appendChild(li);
     });
 
     savedGamesDiv.appendChild(h2);
     savedGamesDiv.appendChild(ul);
   }
-}
-
-function updateBetType() {
-  const betTypeSelect = document.getElementById('bet-type');
-  state.betType = betTypeSelect.value;
-  renderColumns(); // Atualiza as colunas para refletir o novo tipo de aposta
 }
