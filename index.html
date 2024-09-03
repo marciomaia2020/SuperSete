@@ -1,158 +1,43 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <title>Super 7 - Gerador de Números</title>
-    <link rel="stylesheet" href="./css/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Super 7</title>
+  <link rel="stylesheet" href="./css/styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>Super 7 - Escolha seus Números</h1>
-
-        <h2>Atenção quanto as regras</h2>
-
-        <ol class="lista">
-          <li><strong>Modo Padrão:</strong>
-            <p>O modo padrão continua verificando se há exatamente 1 número selecionado por coluna e requer um total de 7 números.</p>
-          </li>
-          <li><strong>Modo Personalizado:</strong>
-            <p>No modo personalizado, agora é possível selecionar mais de um número por coluna.</p>
-            <p>Verifica o total de seleções e a quantidade de números por coluna com base no número total de seleções:</p>
-            <ul>
-              <li>Para 8 a 14 números, cada coluna deve ter entre 1 e 2 números.</li>
-              <li>Para 15 a 21 números, cada coluna deve ter entre 2 e 3 números.</li>
-            </ul>
-          </li>
-        </ol>
-        <label for="modo"><b>Escolha o modo</b>:</label>
-        <select id="modo">
-            <option value="padrao">Modo Padrão (1 número por coluna)</option>
-            <option value="personalizado">Modo Personalizado (8 a 21 números)</option>
-        </select>
-
-        <div class="colunas">
-            <!-- Criando 7 colunas, cada uma com números de 0 a 9 -->
-            <div class="coluna" id="coluna1">
-                <h2>Coluna 1</h2>
-                <div class="numeros">
-                    <button class="numero">0</button>
-                    <button class="numero">1</button>
-                    <button class="numero">2</button>
-                    <button class="numero">3</button>
-                    <button class="numero">4</button>
-                    <button class="numero">5</button>
-                    <button class="numero">6</button>
-                    <button class="numero">7</button>
-                    <button class="numero">8</button>
-                    <button class="numero">9</button>
-                </div>
-            </div>
-            <!-- Repetir para as outras 6 colunas -->
-            <div class="coluna" id="coluna2">
-                <h2>Coluna 2</h2>
-                <div class="numeros">
-                    <button class="numero">0</button>
-                    <button class="numero">1</button>
-                    <button class="numero">2</button>
-                    <button class="numero">3</button>
-                    <button class="numero">4</button>
-                    <button class="numero">5</button>
-                    <button class="numero">6</button>
-                    <button class="numero">7</button>
-                    <button class="numero">8</button>
-                    <button class="numero">9</button>
-                </div>
-            </div>
-            <div class="coluna" id="coluna3">
-                <h2>Coluna 3</h2>
-                <div class="numeros">
-                    <button class="numero">0</button>
-                    <button class="numero">1</button>
-                    <button class="numero">2</button>
-                    <button class="numero">3</button>
-                    <button class="numero">4</button>
-                    <button class="numero">5</button>
-                    <button class="numero">6</button>
-                    <button class="numero">7</button>
-                    <button class="numero">8</button>
-                    <button class="numero">9</button>
-                </div>
-            </div>
-            <div class="coluna" id="coluna4">
-                <h2>Coluna 4</h2>
-                <div class="numeros">
-                    <button class="numero">0</button>
-                    <button class="numero">1</button>
-                    <button class="numero">2</button>
-                    <button class="numero">3</button>
-                    <button class="numero">4</button>
-                    <button class="numero">5</button>
-                    <button class="numero">6</button>
-                    <button class="numero">7</button>
-                    <button class="numero">8</button>
-                    <button class="numero">9</button>
-                </div>
-            </div>
-            <div class="coluna" id="coluna5">
-                <h2>Coluna 5</h2>
-                <div class="numeros">
-                    <button class="numero">0</button>
-                    <button class="numero">1</button>
-                    <button class="numero">2</button>
-                    <button class="numero">3</button>
-                    <button class="numero">4</button>
-                    <button class="numero">5</button>
-                    <button class="numero">6</button>
-                    <button class="numero">7</button>
-                    <button class="numero">8</button>
-                    <button class="numero">9</button>
-                </div>
-            </div>
-            <div class="coluna" id="coluna6">
-                <h2>Coluna 6</h2>
-                <div class="numeros">
-                    <button class="numero">0</button>
-                    <button class="numero">1</button>
-                    <button class="numero">2</button>
-                    <button class="numero">3</button>
-                    <button class="numero">4</button>
-                    <button class="numero">5</button>
-                    <button class="numero">6</button>
-                    <button class="numero">7</button>
-                    <button class="numero">8</button>
-                    <button class="numero">9</button>
-                </div>
-            </div>
-            <div class="coluna" id="coluna7">
-                <h2>Coluna 7</h2>
-                <div class="numeros">
-                    <button class="numero">0</button>
-                    <button class="numero">1</button>
-                    <button class="numero">2</button>
-                    <button class="numero">3</button>
-                    <button class="numero">4</button>
-                    <button class="numero">5</button>
-                    <button class="numero">6</button>
-                    <button class="numero">7</button>
-                    <button class="numero">8</button>
-                    <button class="numero">9</button>
-                </div>
-            </div>
-        </div>
-        <button id="gerarJogos">Gerar Jogos</button>
-
-        <hr />
-            <button id="exportExcel" disabled>Exportar para Excel</button>
-            <button id="exportTxt" disabled>Exportar para TXT</button>
-        <hr />
-            <div id="resultado"></div>
+  <h1>Super 7</h1>
+ 
+  <p>Selecione um número por coluna. Cada coluna possui 10 números (de 0 a 9).</p>
+  <p>Você também pode criar um jogo aleatório.</p>
 
 
+<ul class="lista">
 
+  <th>Para a Super 7, as regras para apostas múltiplas são:</th>
+  <li>8 a 14 números marcados: Entre 1 e 2 números por coluna.</li>
+  <li>15 a 21 números marcados: Entre 2 e 3 números por coluna.</li>
 
-    </div>
+</ul><br />
+        <!-- Select para escolher o tipo de aposta -->
+        <label for="bet-type">Escolha o tipo de aposta:</label>
+          <select id="bet-type" onchange="updateBetType()">
+              <option value="simple">Aposta Simples (7 números)</option>
+              <option value="multiple">Aposta Múltipla (8 a 21 números)</option>
+          </select><br /><br />
+  <div id="super7-columns"></div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-    <script src="./js/script.js"></script>
+  <!-- Botões posicionados fora da div dos números -->
+  <div class="buttons-container">
+    <ul class="buttons" id="super7-buttons"></ul>
+  </div>
+
+  <div id="super7-saved-games"></div>
+
+  <footer>Feito por: <i>Márcio Fernando Maia</i></footer>
+
+  <script defer src="./js/script.js"></script>
 </body>
 </html>
